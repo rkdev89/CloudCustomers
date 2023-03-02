@@ -1,4 +1,5 @@
 using CloudCustomers.API.Controllers;
+using CloudCustomers.API.Services;
 using FluentAssertions;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
@@ -23,7 +24,7 @@ public class TestUsersController
     public async Task Get_OnSuccess_InvokesUserService()
     {
         // Arrange
-        var mockUserService = Mock<IUsersService>();
+        var mockUserService = new Mock<IUsersService>();
         var sut = new UsersController(mockUserService.Object);
 
         // Act
@@ -39,4 +40,3 @@ public class TestUsersController
 
 
 
-// 16:50 https://www.youtube.com/watch?v=ULJ3UEezisw
