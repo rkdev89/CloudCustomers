@@ -24,11 +24,14 @@ public class TestUsersController
     public async Task Get_OnSuccess_InvokesUserService()
     {
         // Arrange
-        var mockUserService = new Mock<IUsersService>();
-        var sut = new UsersController(mockUserService.Object);
+        var mockUsersService = new Mock<IUsersService>();
+        mockUsersService
+            .Setup(service => service.GetAllUsers())
+            .ReturnsAsync(new IEnumerable<User>());
+            
+        var sut = new UsersController(mockUsersService.Object);
 
         // Act
-        var result = (OkObjectResult)await sut.Get();
 
         // Assert
 
